@@ -55,14 +55,3 @@ def load_review_list(package_name, last_post=0):
 
 def _create_result_dict(latest_modified, result):
     return {"latestModified": latest_modified, "list": result}
-
-
-def main():
-    result = load_review_list("com.chibatching.worldclockwidget", last_post=1463689045)
-    print result["latestModified"]
-    for r in result["list"]:
-        print vars(r)
-
-
-if __name__ == '__main__':
-    main()

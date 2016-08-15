@@ -3,7 +3,7 @@ import os
 
 import redis_client
 from review_client import load_review_list
-from reviewtoslack.slack_client import post_to_slack
+from reviewtoslack.slack_client import post_review
 
 
 def main():
@@ -19,7 +19,7 @@ def main():
 
         for review in reviews["list"]:
             if review.lastModified > last_posted_review:
-                post_to_slack(k, v, review)
+                post_review(k, v, review)
 
         redis_client.set_to_redis("{0}_last".format(k), reviews["latestModified"])
 

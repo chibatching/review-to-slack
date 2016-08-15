@@ -7,7 +7,7 @@ _URL = "https://play.google.com/apps/publish/?dev_acc={0}#ReviewDetailsPlace:p={
 _COLOR = ["#d36259", "#ef7e14", "#ffc105", "#bfd047", "#0e9d58"]
 
 
-def post_to_slack(package, channel, review):
+def post_review(package, channel, review):
     star = ""
     for i in range(0, review.starRating):
         star += ":star:"
@@ -38,6 +38,29 @@ def post_to_slack(package, channel, review):
                     "short": True
                 }
             ]
+        }
+    ]
+
+    slacker = Slacker(_SLACK_TOKEN)
+    slacker.chat.post_message(channel, "", as_user=True, attachments=attachment)
+
+
+def post_rating(channel, rating):
+    text = """
+Rating average: {0}
+Rating count: {1}
+:star::star::star::star::star: {2}
+:star::star::star::star: {3}
+:star::star::star: {4}
+:star::star: {5}
+:star: {6}
+""".format(rating.rating_value, rating.rating_count,
+           rating.star_five, rating.star_four, rating.star_three, rating.star_two, rating.star_one)
+
+    attachment = [
+        {
+            "text": text,
+            "color": "#0e9d58"
         }
     ]
 
