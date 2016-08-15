@@ -21,5 +21,9 @@ python reviewtoslack/credential_helper.py YOUR_CREDENTIAL_JSON_FILE
 ## Add task to Heroku Scheduler
 
 ```
-python reviewtoslack/tasks.py
+python reviewtoslack/tasks_review.py
+```
+
+```
+python reviewtoslack/tasks_rating.py
 ```
