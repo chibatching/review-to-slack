@@ -14,7 +14,7 @@ heroku addons:create heroku-redis:hobby-dev
 ```
 heroku config:set SLACK_TOKEN=YOUR_SLACK_TOKEN
 heroku config:set REDIS_URL=YOUR_REDIS_URL
-heroku config:set PLAY_ACCOUNT_ID=YOUR_PLAY_DEV_ACCOUNT
+heroku config:set PLAY_ACCOUNT_ID=YOUR_PLAY_DEV_ACCOUNT_ID
 heroku config:set PACKAGE_CHANNEL="{\"YOUR_APP_PACKAGE_NAME\":\"YOUR_SLACK_CHANNEL_TO_POST\"}"
 python reviewtoslack/credential_helper.py YOUR_CREDENTIAL_JSON_FILE
 ```
