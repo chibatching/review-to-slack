@@ -11,7 +11,7 @@ def main():
         print "load rating: {0}, post to #{1}".format(k, v)
 
         rating = load_rating(k)
-        post_rating(v, rating)
+        post_rating(k, v, rating)
 
 
 if __name__ == '__main__':
