@@ -17,9 +17,10 @@ def main():
 
         reviews = load_review_list(k, last_post=last_posted_review)
 
-        for review in reviews["list"]:
-            if review.lastModified > last_posted_review:
-                post_review(k, v, review)
+        for channel in v:
+            for review in reviews["list"]:
+                if review.lastModified > last_posted_review:
+                    post_review(k, channel, review)
 
         redis_client.set_to_redis("{0}_last".format(k), reviews["latestModified"])
 
