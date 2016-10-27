@@ -30,14 +30,13 @@ def main():
 def rating_decoder(obj):
     result = Rating()
 
-    if obj is not None:
-        result.rating_value = obj['rating_value']
-        result.rating_count = obj['rating_count']
-        result.star_five = obj['star_five']
-        result.star_four = obj['star_four']
-        result.star_three = obj['star_three']
-        result.star_two = obj['star_two']
-        result.star_one = obj['star_one']
+    result.rating_value = obj['rating_value']
+    result.rating_count = obj['rating_count']
+    result.star_five = obj['star_five']
+    result.star_four = obj['star_four']
+    result.star_three = obj['star_three']
+    result.star_two = obj['star_two']
+    result.star_one = obj['star_one']
 
     return result
 
