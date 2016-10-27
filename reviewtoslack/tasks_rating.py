@@ -16,7 +16,7 @@ def main():
         try:
             previous_rating = json.loads(
                 redis_client.get_from_redis("{0}_last_rating".format(k)), object_hook=rating_decoder)
-        except ValueError:
+        except (TypeError, ValueError):
             previous_rating = None
 
         print previous_rating
