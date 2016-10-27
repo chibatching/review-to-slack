@@ -19,8 +19,6 @@ def main():
         except (TypeError, ValueError):
             previous_rating = Rating()
 
-        print previous_rating
-
         for channel in v:
             post_rating(k, channel, rating, previous_rating)
 

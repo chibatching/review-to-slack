@@ -61,7 +61,7 @@ def post_rating(package, channel, rating, previous_rating):
 
     attachment = [
         {
-            "title": "Rating average = {0} {1:+}".format(round(rating.rating_value, 4),
+            "title": "Rating average = {0} ({1:+})".format(round(rating.rating_value, 4),
                                                          round(rating.rating_value - previous_rating.rating_value, 4)),
             "title_link": _RATING_DETAIL_URL.format(_ACCOUNT_ID, package),
             "text": text,
