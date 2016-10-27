@@ -46,14 +46,18 @@ def post_review(package, channel, review):
     slacker.chat.post_message(channel, "", as_user=True, attachments=attachment)
 
 
-def post_rating(package, channel, rating):
-    text = """Rating count = {0}
-:star::star::star::star::star:  {1}
-:star::star::star::star:  {2}
-:star::star::star:  {3}
-:star::star:  {4}
-:star:  {5}
-""".format(rating.rating_count, rating.star_five, rating.star_four, rating.star_three, rating.star_two, rating.star_one)
+def post_rating(package, channel, rating, previous_rating):
+    text = """Rating count = {0} ({6:+})
+:star::star::star::star::star:  {1} ({7:+})
+:star::star::star::star:  {2} ({8:+})
+:star::star::star:  {3} ({9:+})
+:star::star:  {4} ({10:+})
+:star:  {5} ({11:+})
+""".format(round(rating.rating_count, 4), rating.star_five, rating.star_four, rating.star_three, rating.star_two,
+           rating.star_one, round(previous_rating.rating_count - rating.rating_count, 4),
+           previous_rating.star_five - rating.star_five, previous_rating.star_four - rating.star_four,
+           previous_rating.star_three - rating.star_three, previous_rating.star_two - rating.star_two,
+           previous_rating.star_one - rating.star_one)
 
     attachment = [
         {
