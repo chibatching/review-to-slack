@@ -24,7 +24,7 @@ def load_rating(app_id, appfollow_cid, appfollow_token):
     rating = Rating()
 
     rating.rating_value = average
-    rating.rating_count = json_result["ratings"]["list"][0]["stars_total"]
+    rating.rating_count = int(json_result["ratings"]["list"][0]["stars_total"])
 
     rating.star_five = stars5
     rating.star_four = stars4
