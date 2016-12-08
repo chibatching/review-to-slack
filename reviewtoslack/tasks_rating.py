@@ -21,7 +21,7 @@ def main():
             previous_rating = Rating()
 
         for channel in v:
-            post_rating(k, channel, rating, previous_rating)
+            post_rating(k, channel, rating, previous_rating, "play_store")
 
         set_to_redis("{0}_last_rating".format(k), json.dumps(rating.__dict__))
 
@@ -37,7 +37,7 @@ def main():
             previous_rating = Rating()
 
         for channel in v:
-            post_rating(k, channel, rating, previous_rating)
+            post_rating(k, channel, rating, previous_rating, "app_store")
 
         set_to_redis("{0}_last_rating".format(k), json.dumps(rating.__dict__))
 
