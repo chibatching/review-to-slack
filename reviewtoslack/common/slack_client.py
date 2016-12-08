@@ -48,27 +48,26 @@ def post_review(package, channel, review):
 
 
 def post_rating(package, channel, rating, previous_rating):
-    text = """Rating count = {0} ({6:+})
-:star::star::star::star::star:  {1} ({7:+})
-:star::star::star::star:  {2} ({8:+})
-:star::star::star:  {3} ({9:+})
-:star::star:  {4} ({10:+})
-:star:  {5} ({11:+})
-""".format(rating.rating_count, rating.star_five, rating.star_four, rating.star_three, rating.star_two,
-           rating.star_one, rating.rating_count - previous_rating.rating_count,
+    attachment_text = """:star::star::star::star::star:  {0} ({5:+})
+:star::star::star::star:  {1} ({6:+})
+:star::star::star:  {2} ({7:+})
+:star::star:  {3} ({8:+})
+:star:  {4} ({9:+})""".format(rating.star_five, rating.star_four, rating.star_three, rating.star_two, rating.star_one,
            rating.star_five - previous_rating.star_five, rating.star_four - previous_rating.star_four,
            rating.star_three - previous_rating.star_three, rating.star_two - previous_rating.star_two,
            rating.star_one - previous_rating.star_one)
 
+    text = """Rating average = {0} ({1:+})
+Rating count = {2} ({3:+})""".format(round(rating.rating_value, 4),
+                                     round(rating.rating_value - previous_rating.rating_value, 4),
+                                     rating.rating_count, rating.rating_count - previous_rating.rating_count)
+
     attachment = [
         {
-            "title": "Rating average = {0} ({1:+})".format(round(rating.rating_value, 4),
-                                                           round(rating.rating_value-previous_rating.rating_value, 4)),
-            "title_link": _RATING_DETAIL_URL.format(_ACCOUNT_ID, package),
-            "text": text,
+            "text": attachment_text,
             "color": "#0e9d58"
         }
     ]
 
     slacker = Slacker(_SLACK_TOKEN)
-    slacker.chat.post_message(channel, "", as_user=True, attachments=attachment)
+    slacker.chat.post_message(channel, text, as_user=True, attachments=attachment)
