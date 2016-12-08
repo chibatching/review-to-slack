@@ -50,7 +50,7 @@ def post_review(package, channel, review):
     slacker.chat.post_message(channel, "", as_user=True, attachments=attachment)
 
 
-def post_rating(package, channel, rating, previous_rating, icon):
+def post_rating(package, channel, rating, previous_rating, store):
     attachment_text = """:star::star::star::star::star:  {0} ({5:+})
 :star::star::star::star:  {1} ({6:+})
 :star::star::star:  {2} ({7:+})
@@ -74,7 +74,9 @@ Rating count = {2} ({3:+})""".format(round(rating.rating_value, 4),
         }
     ]
 
-    icon = _PLAY_STORE_ICON_URL if (icon == "play_store") else _APP_STORE_ICON_URL if (icon == "app_store") else None
+    store = _PLAY_STORE_ICON_URL if (store == "play_store") else _APP_STORE_ICON_URL if (store == "app_store") else None
+    user_name = "Play Store Rating" if (store == "play_store")\
+        else "App Store Rating" if (store == "app_store") else None
 
     slacker = Slacker(_SLACK_TOKEN)
-    slacker.chat.post_message(channel, text, as_user=True, attachments=attachment, icon_url=icon)
+    slacker.chat.post_message(channel, text, attachments=attachment, username=user_name, icon_url=store)
