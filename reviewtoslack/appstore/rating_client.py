@@ -13,12 +13,12 @@ def load_rating(app_id, appfollow_cid, appfollow_token):
 
     json_result = json.loads(result.read())
 
-    stars1 = float(json_result["ratings"]["list"][0]["stars1"])
-    stars2 = float(json_result["ratings"]["list"][0]["stars2"])
-    stars3 = float(json_result["ratings"]["list"][0]["stars3"])
-    stars4 = float(json_result["ratings"]["list"][0]["stars4"])
-    stars5 = float(json_result["ratings"]["list"][0]["stars5"])
-    average = (stars1 + stars2 * 2 + stars3 * 3 + stars4 * 4 + stars5 * 5) / int(
+    stars1 = int(json_result["ratings"]["list"][0]["stars1"])
+    stars2 = int(json_result["ratings"]["list"][0]["stars2"])
+    stars3 = int(json_result["ratings"]["list"][0]["stars3"])
+    stars4 = int(json_result["ratings"]["list"][0]["stars4"])
+    stars5 = int(json_result["ratings"]["list"][0]["stars5"])
+    average = (stars1 + stars2 * 2 + stars3 * 3 + stars4 * 4 + stars5 * 5) / float(
         json_result["ratings"]["list"][0]["stars_total"])
 
     rating = Rating()
