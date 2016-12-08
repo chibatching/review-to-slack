@@ -55,7 +55,7 @@ def post_rating(package, channel, rating, previous_rating):
 :star::star:  {4} ({10:+})
 :star:  {5} ({11:+})
 """.format(rating.rating_count, rating.star_five, rating.star_four, rating.star_three, rating.star_two,
-           rating.star_one, round(rating.rating_count - previous_rating.rating_count, 4),
+           rating.star_one, rating.rating_count - previous_rating.rating_count,
            rating.star_five - previous_rating.star_five, rating.star_four - previous_rating.star_four,
            rating.star_three - previous_rating.star_three, rating.star_two - previous_rating.star_two,
            rating.star_one - previous_rating.star_one)
@@ -63,7 +63,7 @@ def post_rating(package, channel, rating, previous_rating):
     attachment = [
         {
             "title": "Rating average = {0} ({1:+})".format(round(rating.rating_value, 4),
-                                                         round(rating.rating_value - previous_rating.rating_value, 4)),
+                                                           round(rating.rating_value-previous_rating.rating_value, 4)),
             "title_link": _RATING_DETAIL_URL.format(_ACCOUNT_ID, package),
             "text": text,
             "color": "#0e9d58"
