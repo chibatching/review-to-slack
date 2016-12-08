@@ -67,16 +67,14 @@ Rating count = {2} ({3:+})""".format(round(rating.rating_value, 4),
                                      round(rating.rating_value - previous_rating.rating_value, 4),
                                      rating.rating_count, rating.rating_count - previous_rating.rating_count)
 
-    icon = _PLAY_STORE_ICON_URL if (store == "play_store") else _APP_STORE_ICON_URL if (store == "app_store") else None
-
     attachment = [
         {
             "text": attachment_text,
             "color": "#0e9d58",
-            "thumb_url": icon
         }
     ]
 
+    icon = _PLAY_STORE_ICON_URL if (store == "play_store") else _APP_STORE_ICON_URL if (store == "app_store") else None
     user_name = "Play Store Rating" if (store == "play_store")\
         else "App Store Rating" if (store == "app_store") else None
 
