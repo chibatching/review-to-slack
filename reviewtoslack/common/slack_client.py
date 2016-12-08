@@ -1,4 +1,5 @@
 import os
+
 from slacker import Slacker
 
 _SLACK_TOKEN = os.environ.get("SLACK_TOKEN")

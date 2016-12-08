@@ -1,7 +1,7 @@
-from lxml import html
-from rating import Rating
 import requests
+from lxml import html
 
+from common.rating import Rating
 
 _REQUEST_BASE = "https://play.google.com/store/apps/details?id={0}"
 

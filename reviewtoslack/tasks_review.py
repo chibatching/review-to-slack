@@ -1,9 +1,9 @@
 import json
 import os
 
-import redis_client
-from review_client import load_review_list
-from reviewtoslack.slack_client import post_review
+from common.redis_client import set_to_redis, get_from_redis
+from common.slack_client import post_review
+from playstore.review_client import load_review_list
 
 
 def main():
@@ -11,7 +11,7 @@ def main():
     for k, v in package_channels.items():
         print "load review: {0}, post to #{1}".format(k, v)
         try:
-            last_posted_review = int(redis_client.get_from_redis("{0}_last".format(k)))
+            last_posted_review = int(get_from_redis("{0}_last".format(k)))
         except TypeError:
             last_posted_review = 0
 
@@ -22,7 +22,7 @@ def main():
                 if review.lastModified > last_posted_review:
                     post_review(k, channel, review)
 
-        redis_client.set_to_redis("{0}_last".format(k), reviews["latestModified"])
+        set_to_redis("{0}_last".format(k), reviews["latestModified"])
 
 
 if __name__ == '__main__':

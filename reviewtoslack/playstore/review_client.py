@@ -4,7 +4,7 @@ from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client.service_account import ServiceAccountCredentials
 
-from review import Review
+from common.review import Review
 
 
 _SCOPES = ['https://www.googleapis.com/auth/androidpublisher']
